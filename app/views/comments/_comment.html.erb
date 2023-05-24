@@ -1,17 +1,11 @@
 <div id="<%= dom_id comment %>">
   <p>
+    <strong>from:</strong>
+    <%= comment.user.email %>
+  </p>
+  <p>
     <strong>Body:</strong>
     <%= comment.body %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= comment.user_id %>
-  </p>
-
-  <p>
-    <strong>Post:</strong>
-    <%= comment.post_id %>
   </p>
 
 </div>
