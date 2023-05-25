@@ -3,8 +3,8 @@ class CommentsController < ApplicationController
 
   def index
     # Find all the comments associated with the post
-    post = Post.find(params[:post_id])
-    @comments = post.comments
+    @post = Post.find(params[:post_id])
+    @comments = @post.comments
   end
 
   # GET /comments/1 or /comments/1.json
@@ -28,7 +28,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to post_comments_url(@comment), notice: "Comment was successfully created." }
+        format.html { redirect_to post_comments_url(@post), notice: "Comment was successfully created." }
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -41,7 +41,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to post_comments_url(@comment), notice: "Comment was successfully updated." }
+        format.html { redirect_to post_comments_url(@post), notice: "Comment was successfully updated." }
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,7 +55,7 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to post_comments_url, notice: "Comment was successfully destroyed." }
+      format.html { redirect_to post_comments_url(@post), notice: "Comment was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -63,6 +63,7 @@ class CommentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
+      @post = Post.find(params[:post_id])
       @comment = Comment.find(params[:id])
     end
 
