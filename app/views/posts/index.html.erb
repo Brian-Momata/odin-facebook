@@ -1,4 +1,3 @@
-<p style="color: green"><%= notice %></p>
 
 <h1>Posts</h1>
 
@@ -11,4 +10,13 @@
   <% end %>
 </div>
 
-<%= link_to "New post", new_post_path %> <br>
+<% if current_user %>
+  <%= link_to "New post", new_post_path %> <br>
+
+  <%= form_tag destroy_user_session_path, method: :delete do %>
+    <%= submit_tag "Sign out" %>
+  <% end %>
+
+<% else %>
+  <%= link_to "Sign in", new_user_session_path %>
+<% end %>
