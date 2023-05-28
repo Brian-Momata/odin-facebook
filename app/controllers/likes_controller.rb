@@ -1,38 +1,27 @@
 class LikesController < ApplicationController
   before_action :set_like, only: [:destroy]
 
+  # POST /posts/:id/likes
   def create
-    @like = Like.new(like_params)
+    @post = Post.find(params[:post_id])
+    @like = @post.likes.build(post_id: @post.id, user_id: current_user.id )
 
-    respond_to do |format|
-      if @like.save
-        format.html { redirect_to like_url(@like), notice: "Like was successfully created." }
-        format.json { render :show, status: :created, location: @like }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @like.errors, status: :unprocessable_entity }
-      end
+    if @like.save
+      flash[:notice] = "You've liked the post"
+    else
+      flash.now[:alert] = "There was an error while liking the post"
     end
+    redirect_to @post
   end
 
-  # DELETE /likes/1 or /likes/1.json
+  # DELETE /posts/:id/likes/1 or /likes/1.json
   def destroy
-    @like.destroy
-
-    respond_to do |format|
-      format.html { redirect_to likes_url, notice: "Like was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    
     def set_like
       @like = Like.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def like_params
-      params.require(:like).permit(:user_id, :post_id)
     end
 end
