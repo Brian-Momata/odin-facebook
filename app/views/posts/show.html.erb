@@ -1,9 +1,6 @@
-<p style="color: green"><%= notice %></p>
-
 <%= render @post %>
 
 <div>
-  <p>Likes: <%= @post.likes.count %></p>
   <%= button_to "like post", post_likes_path(@post), method: :post %>
   <%= link_to "View Comments", post_comments_path(@post) %> |
   <%= link_to "Edit this post", edit_post_path(@post) %> |
