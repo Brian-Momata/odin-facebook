@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root "posts#index"
+  root "posts#index", as: "home"
+
+  get "/notifications", to: "notifications#check"
 
   devise_for :users, controllers: {
     sessions: 'users/sessions'
