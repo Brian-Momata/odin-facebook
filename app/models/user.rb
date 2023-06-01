@@ -8,8 +8,8 @@ class User < ApplicationRecord
   has_many :likes
   has_many :comments
 
-  has_many :follows, class_name: "follow", foreign_key: "follower_id"
+  has_many :follows, class_name: "Follow", foreign_key: "follower_id"
   has_many :followed_users, through: :follows, source: :followed_user
-  has_many :followers, class_name: "follow", foreign_key: "followed_user_id"
+  has_many :followers, class_name: "Follow", foreign_key: "followed_user_id"
   has_many :follower_users, through: :followers, source: :follower
 end
