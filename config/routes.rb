@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy]
   end
 
-  resources :users, except: [:create, :destroy, :edit, :new, :update] do
+  resources :users, path: 'profile', except: [:create, :destroy, :edit, :new, :update] do
     member do
       post 'follow', to: 'follows#create'  # Create a follow relationship
       delete 'unfollow', to: 'follows#destroy'  # Remove a follow relationship
