@@ -1,11 +1,7 @@
 <div id="<%= dom_id post %>">
+  <%= image_tag post.author.gravatar_url(:size => 30) %>
+  <%= link_to "#{post.author.email }", user_path(post.author) %>
   <p>
-    <strong>Author:</strong>
-    <%= link_to "#{post.author.email }", user_path(post.author) %>
-  </p>
-
-  <p>
-    <strong>Body:</strong>
     <%= post.body %>
   </p>
   <p>
