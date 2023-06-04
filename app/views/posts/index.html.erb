@@ -1,24 +1,18 @@
-<h1>Posts</h1>
+<h1>Home</h1>
 <div id="navbar">
-  <%= link_to "Notifications", notifications_path %>
+  <%= link_to "Notifications", notifications_path %> |
+  <%= link_to "Profile", user_path(current_user) %> |
+  <%= link_to "New post", new_post_path %>
 </div>
 
 <div id="posts">
   <% @posts.each do |post| %>
     <br><%= render post %>
     <p>
-      <%= link_to "Show this post", post %>
+      <%= link_to "View Post", post %>
     </p>
   <% end %>
 </div>
-
-<% if current_user %>
-  <%= link_to "New post", new_post_path %> <br>
-
-  <%= form_tag destroy_user_session_path, method: :delete do %>
-    <%= submit_tag "Sign out" %>
-  <% end %>
-
-<% else %>
-  <%= link_to "Sign in", new_user_session_path %>
+<%= form_tag destroy_user_session_path, method: :delete do %>
+  <%= submit_tag "Sign out" %>
 <% end %>
