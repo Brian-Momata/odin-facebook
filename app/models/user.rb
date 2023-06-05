@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :likes
   has_many :comments
+  has_many :notifications, foreign_key: "recipient_id"
 
   has_many :follows, class_name: "Follow", foreign_key: "follower_id"
   has_many :followed_users, through: :follows, source: :followed_user

@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sender: one
+  recipient: one
+  follow: one
+  message: MyString
+  read: false
+
+two:
+  sender: two
+  recipient: two
+  follow: two
+  message: MyString
+  read: false
