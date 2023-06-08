@@ -12,6 +12,11 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <div id="navbar">
+      <%= link_to "Home", home_path %> |
+      <%= link_to "Notifications", notifications_path %> |
+      <%= link_to "Profile", user_path(current_user) %> 
+    </div>
 
     <%= yield %>
   </body>

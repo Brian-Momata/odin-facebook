@@ -1,2 +1,7 @@
 <h1>Here are your notifications</h1>
 
+<% @notifications.each do |notification| %>
+  <p>
+    <%= notification.message %> from
+    <%= link_to "#{notification.sender.email}", user_path(notification.sender) %>
+<% end%>
