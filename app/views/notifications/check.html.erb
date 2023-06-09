@@ -1,7 +1,21 @@
-<h1>Here are your notifications</h1>
+<% if @notifications.empty? %>
+  <h2>You don't have any notifications</h2>
+<% end %>
 
 <% @notifications.each do |notification| %>
   <p>
     <%= notification.message %> from
     <%= link_to "#{notification.sender.email}", user_path(notification.sender) %>
+    
+    <% follow = notification.follow %>
+
+    <%= form_with model: follow, url: follow_path(follow), method: :patch do |f| %>
+      <%= f.hidden_field :status, value: "Accepted" %>
+      <%= f.submit "Accept" %>
+    <% end %>
+    <%= form_with model: follow, url: follow_path(follow), method: :patch do |f| %>
+      <%= f.hidden_field :status, value: "Rejected" %>
+      <%= f.submit "Reject" %>
+    <% end %>
+  </p>
 <% end%>

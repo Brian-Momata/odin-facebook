@@ -16,7 +16,17 @@ class FollowsController < ApplicationController
     end
   end
   
-
+  def update
+    @follow = Follow.find(params[:id])
+      if @follow.update(follow_params)
+        flash[:success] = "Follow was successfully updated"
+        redirect_to notifications_path
+      else
+        flash[:error] = "Something went wrong"
+        redirect_to notifications_path
+      end
+  end
+  
   def destroy
     user = User.find(params[:id])
     @follow = Follow.find_by(follower_id: current_user, followed_user_id: user)
@@ -25,5 +35,11 @@ class FollowsController < ApplicationController
     else
       flash.now[:alert] = "Can't unfollow this user"
     end
+  end
+  
+  private
+
+  def follow_params
+    params.require(:follow).permit(:status)
   end
 end
