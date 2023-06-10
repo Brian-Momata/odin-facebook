@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root "posts#index", as: "home"
 
   get "/notifications", to: "notifications#check"
@@ -19,6 +20,9 @@ Rails.application.routes.draw do
     end
 
     resources :posts, only: [:create, :new, :edit, :update, :destroy]
+
+    get 'following/index'
+    get 'followers/index'
   end
 
   resources :follows, only: [:update]
