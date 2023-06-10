@@ -1,8 +1,8 @@
-<% if @notifications.empty? %>
+<% if @notifications.pending_requests.empty? %>
   <h2>You don't have any notifications</h2>
 <% end %>
 
-<% @notifications.each do |notification| %>
+<% @notifications.pending_requests.each do |notification| %>
   <p>
     <%= notification.message %> from
     <%= link_to "#{notification.sender.email}", user_path(notification.sender) %>
