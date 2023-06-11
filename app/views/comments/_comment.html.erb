@@ -1,10 +1,7 @@
 <div id="<%= dom_id comment %>">
+  <%= image_tag comment.user.gravatar_url(:size => 30) %>
+  <%= link_to "#{comment.user.email}", user_path(comment.user) %>
   <p>
-    <strong>from:</strong>
-    <%= comment.user.email %>
-  </p>
-  <p>
-    <strong>Body:</strong>
     <%= comment.body %>
   </p>
 

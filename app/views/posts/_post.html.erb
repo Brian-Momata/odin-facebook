@@ -4,9 +4,9 @@
   <p>
     <%= post.body %>
   </p>
-  <p>
-    <strong>Likes:</strong>
-    <%= post.likes.count %>
-  </p>
-
+  <strong>Likes:</strong>
+  <%= post.likes.count %> |
+  <%= link_to "Comments", post_comments_path(post) %>:
+  <%= post.comments.count %>
+  <%= button_to "like post", post_likes_path(post), method: :post %>
 </div>

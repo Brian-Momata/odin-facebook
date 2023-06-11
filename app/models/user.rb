@@ -12,7 +12,11 @@ class User < ApplicationRecord
   has_many :notifications, foreign_key: "recipient_id"
 
   has_many :follows, class_name: "Follow", foreign_key: "follower_id"
-  has_many :followed_users, through: :follows, source: :followed_user
+  has_many :followed_users, -> { where("follows.status = ?", "Accepted") },
+    through: :follows,
+    source: :followed_user
   has_many :followers, class_name: "Follow", foreign_key: "followed_user_id"
-  has_many :follower_users, through: :followers, source: :follower
+  has_many :follower_users,-> { where("follows.status = ?", "Accepted") },
+    through: :followers,
+    source: :follower
 end
