@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-
+  get '/auth/:provider/callback', to: 'sessions#create'
   root "posts#index", as: "home"
-
   get "/notifications", to: "notifications#check"
 
   devise_for :users, controllers: {
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
   resources :posts do
