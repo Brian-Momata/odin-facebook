@@ -78,3 +78,5 @@ gem "pg", "~> 1.5"
 gem 'gravtastic'
 
 gem "omniauth-facebook", "~> 9.0"
+
+gem "letter_opener", group: :development
