@@ -8,5 +8,11 @@
   <%= post.likes.count %> |
   <%= link_to "Comments", post_comments_path(post) %>:
   <%= post.comments.count %>
-  <%= button_to "like post", post_likes_path(post), method: :post %>
+
+  <% if post.likes.exists?(user_id: current_user.id) %>
+  <% like = post.likes.find_by(user_id: current_user.id) %>
+  <%= button_to "Unlike post", post_like_path(post, like.id), method: :delete %>
+<% else %>
+  <%= button_to "Like post", post_likes_path(post), method: :post %>
+<% end %>
 </div>
