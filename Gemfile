@@ -80,3 +80,5 @@ gem 'gravtastic'
 gem "omniauth-facebook", "~> 9.0"
 
 gem "letter_opener", group: :development
+
+gem 'faker'
