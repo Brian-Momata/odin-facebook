@@ -8,9 +8,9 @@
 </p>
 <% if current_user != user%>
   <% if @followed %>
-    <%= button_to "Following", unfollow_user_path, method: :delete, remote: true %>
+    <%= button_to "Unfollow", unfollow_user_path, method: :delete, remote: true %>
   <% else %>
-    <%= button_to "Follow", follow_user_path(follower_id: current_user, followed_user_id: @user), remote: true %>
+    <%= button_to "Send request", follow_user_path(follower_id: current_user, followed_user_id: @user), remote: true %>
   <% end %>
 <% end %>
 

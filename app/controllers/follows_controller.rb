@@ -8,11 +8,14 @@ class FollowsController < ApplicationController
     @notif.sender_id = params[:follower_id]
     @notif.recipient_id = params[:followed_user_id]
   
-    if @follow.save
+    begin
+      @follow.save
       @notif.save
-      flash.now[:notice] = "You've followed this user"
-    else
-      flash.now[:alert] = "Can't follow this user"
+      flash[:notice] = "Request sent"
+      redirect_to user_path
+    rescue ActiveRecord::RecordNotUnique => e
+      flash[:alert] = "Can't follow this user"
+      redirect_to user_path
     end
   end
   
