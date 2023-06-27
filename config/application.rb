@@ -18,5 +18,8 @@ module OdinFacebook
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Ensures that the config/master.key file is used to decrypt the credentials.
+    config.require_master_key = true
   end
 end
